@@ -4,27 +4,33 @@ klónozz le-MAC címek újrainicializálása, linkelt klón!-, vagy hozz létre 
 
 Indítás előtt szerkezd és a hálózatnál csak egy BRIDGEL-kártyát rakj be!
 
-    1. WordPress szerver indítása
-    2. sudo -s (eztán kéri és add meg neki a super user jszót!)
-    3. apt-get update
-    4. apt-get install lamp-server^
-    5. itt feldob egy jszó ablakot, adj neki jszót!
-    6. mysql -u root -p
-    7. CREATE DATABASE wordpressdb;
-    8. CREATE USER wordpressuser@localhost IDENTIFIED BY 'wordpresspassword';
-    9. GRANT ALL PRIVILEGES ON wordpressdb.* TO wordpressuser@localhost; FLUSH PRIVILEGES;
-    10. exit
-    11. cd /tmp
-    12. wget http://wordpress.org/latest.zip
-    13. unzip -q latest.zip -d /var/www/html/
-    14. chown -R www-data:www-data /var/www/html/wordpress
-    15. chmod -R 755 /var/www/html/wordpress
-    16. mkdir -p /var/www/html/wordpress/wp-content/uploads
-    17. chown -R www-data:www-data /var/www/html/wordpress/wp-content/uploads 
-    18. ifconfig -itt kiírja az ip címeket és csatlakozz a belső csatoló címére(http://SAJÁT IP/wordpress), DE ha nem jó
-    19. service apache2 restart
-    20. apt-get install php7.0-mysql
-
+Ubuntu 16.04-en:
+Parancsok:
+sudo apt-get update
+sudo apt-get install tasksel mc zip -y
+sudo tasksel install lamp-server
+      Mysql root jelszó megadása
+mysql -u root -p
+CREATE DATABASE wordpressdb; //Létrehozza az adatbázist bejelentkezésnél ezt kell használni vizsgán változhat.
+CREATE USER wordpressuser@localhost IDENTIFIED BY 'wordpresspassword'; //Létrehozza a felhasználót, bejelentkezésnél ezt kell használni vizsgán változhat.
+GRANT ALL PRIVILEGES ON wordpressdb.* TO wordpressuser@localhost; FLUSH PRIVILEGES;
+exit
+cd /tmp
+wget http://wordpress.org/latest.zip
+sudo unzip -q latest.zip -d /var/www/html/
+sudo chown -R www-data:www-data /var/www/html/wordpress
+sudo chmod -R 755 /var/www/html/wordpress
+sudo mkdir -p /var/www/html/wordpress/wp-content/uploads
+sudo chown -R www-data:www-data /var/www/html/wordpress/wp-content/uploads 
+sudo service apache2 restart
+sudo apt-get install php7.0-mysql
+[Böngészőben]
+ipcím/wordpress
+magyar nyelv kiválasztása
+Adatbázis neve: wordpressdb
+Felhasználónév: wordpressuser
+Jelszó: wordpresspassword
+Tábla előtag: wp_
 
 Így már indulnia kell!
 Válaszd ki a nyelvet(van magyar is).
